@@ -14,6 +14,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { executeCommand } from '@/lib/terminal/execudeCommand';
 
 function TerminalConsole() {
   const formSchema = z.object({
@@ -28,9 +29,10 @@ function TerminalConsole() {
     },
   });
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
     console.log(values);
+
+    const result = executeCommand(values.command);
+    console.log(result);
   }
 
   return (
@@ -45,9 +47,14 @@ function TerminalConsole() {
                 <FormControl>
                   <Input
                     type='text'
-                    placeholder='Linux console'
+                    placeholder='Type ypur command here...'
                     autoFocus
                     style={{ width: '100%' }}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        form.handleSubmit(onSubmit)();
+                      }
+                    }}
                     {...field}
                   />
                 </FormControl>
