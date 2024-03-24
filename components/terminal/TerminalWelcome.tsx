@@ -57,7 +57,7 @@ function TerminalWelcome() {
 
   const welcomeText = 'Welcome to the terminal';
   const welcomeInfo = [
-    'guest@domain',
+    'guest@host',
     `OS: ${browserName} ${browserVersion} on ${OS} ${OSVersion}`,
     `Kernel: ${CPU} ${model} ${vendor}`,
     `Uptime: ${uptime}`, // Display the dynamic uptime

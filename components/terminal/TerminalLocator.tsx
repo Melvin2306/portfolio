@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 
 function TerminalLocator() {
-  const [user, setUser] = useState('user');
-  const [location, setLocation] = useState('location');
+  const [user, setUser] = useState('guest');
+  const [location, setLocation] = useState('host');
   return (
     <div className='w-3/10 content-center'>
       <span className=''>{user}</span>
