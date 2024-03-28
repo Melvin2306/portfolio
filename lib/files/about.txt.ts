@@ -1,1 +1,1 @@
-export const about = 'Melvin Rinkleffs portfolio page'
+export const about = 'Melvin Rinkleffs portfolio page';

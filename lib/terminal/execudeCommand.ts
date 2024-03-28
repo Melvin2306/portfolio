@@ -1,11 +1,13 @@
 import { terminalCommands } from '@/lib/terminal/terminalCommands';
 
-export function executeCommand(input: string): void {
+export function executeCommand(input: string): string {
   const selectedCommand = terminalCommands.find((cmd) => cmd.command === input);
 
   if (selectedCommand) {
-    selectedCommand.function(input);
+    const output = selectedCommand.function(input);
+    return output;
   } else {
     console.log(`Command not found: ${input}`);
+    return '';
   }
 }

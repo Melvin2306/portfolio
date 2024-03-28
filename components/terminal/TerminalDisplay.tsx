@@ -4,12 +4,16 @@ import { TerminalTutorial } from './TerminalTutorial';
 
 import { ScrollArea, ScrollBar } from '../ui/scroll-area';
 
+interface TerminalDisplayProps {
+  output: string;
+}
+
 const messages = [
   { id: 1, message: 'hello' },
   { id: 2, message: 'bye' },
 ];
 
-function TerminalDisplay() {
+function TerminalDisplay({ output }: TerminalDisplayProps) {
   return (
     // <div className='relative'>
     <ScrollArea className='relative h-full overflow-hidden'>

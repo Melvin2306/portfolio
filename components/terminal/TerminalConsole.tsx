@@ -4,19 +4,15 @@ import React from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
+import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { executeCommand } from '@/lib/terminal/execudeCommand';
 
-function TerminalConsole() {
+interface TerminalConsoleProps {
+  onCommandExecute: (output: string) => void;
+}
+
+function TerminalConsole({ onCommandExecute }: TerminalConsoleProps) {
   const formSchema = z.object({
     command: z.string().min(2, {
       message: 'command must be at least 2 characters long',
@@ -29,10 +25,23 @@ function TerminalConsole() {
     },
   });
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-
-    const result = executeCommand(values.command);
-    console.log(result);
+    try {
+      const result = executeCommand(values.command);
+      if (result !== '') {
+        onCommandExecute(result);
+      } else {
+        onCommandExecute(`Command not found: ${values.command}`);
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        onCommandExecute(`Error: ${error.message}`);
+      } else {
+        onCommandExecute(
+          'An unknown error occurred, check the console for more information.'
+        );
+        console.error('An unknown error occurred:', error);
+      }
+    }
   }
 
   return (
