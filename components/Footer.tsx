@@ -1,8 +1,22 @@
-import React from 'react';
+'use client';
+import React, { useState, useEffect } from 'react';
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
 import { GithubIcon, LinkedinIcon, YoutubeIcon } from 'lucide-react';
 
 function Footer() {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
   return (
     <div className='h-2/10 flex items-center justify-between'>
       <div className='flex flex-row items-center gap-3 '>
@@ -30,7 +44,9 @@ function Footer() {
       </div>
 
       <div className='flex flex-row items-center gap-2 '>
-        <p>Change dark/light mode</p>
+        <p className={`${window.innerWidth < 550 ? 'hidden' : ''}`}>
+          Change dark/light mode
+        </p>
         <ThemeToggle />
       </div>
     </div>
