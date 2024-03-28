@@ -5,7 +5,7 @@ import TerminalInput from '@/components/terminal/TerminalInput';
 function TerminalWindow() {
   return (
     <div className='flex flex-1 rounded-xl border border-primary'>
-      <div className='flex w-full flex-col p-3'>
+      <div className='relative w-full p-3'>
         <TerminalDisplay />
         <TerminalInput />
       </div>

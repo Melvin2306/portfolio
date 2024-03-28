@@ -4,7 +4,7 @@ import TerminalConsole from '@/components/terminal/TerminalConsole';
 
 function TerminalInput() {
   return (
-    <div className='h-3/10 flex w-full flex-row gap-2'>
+    <div className='h-3/10 absolute bottom-0 flex w-full flex-row gap-2 px-2 pb-2'>
       <TerminalLocator />
       <TerminalConsole />
     </div>

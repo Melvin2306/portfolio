@@ -95,11 +95,11 @@ function TerminalWelcome() {
 `;
 
   return (
-    <div className='flex h-full w-full flex-row'>
-      <div className='w-3/5'>
+    <div className='grid w-full grid-cols-6 '>
+      <div className='col-span-4'>
         <pre>{ASCIIArt}</pre>
       </div>
-      <div className='flex w-2/5 flex-1'>
+      <div className='col-span-2'>
         <ul>
           {welcomeInfo.map((info) => (
             <li key={info}>{info}</li>

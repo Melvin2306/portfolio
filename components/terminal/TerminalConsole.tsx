@@ -36,7 +36,7 @@ function TerminalConsole() {
   }
 
   return (
-    <div className='flex flex-1'>
+    <div className='flex flex-1 pr-2'>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className='w-full'>
           <FormField
@@ -47,7 +47,7 @@ function TerminalConsole() {
                 <FormControl>
                   <Input
                     type='text'
-                    placeholder='Type ypur command here...'
+                    placeholder='Type your command here...'
                     autoFocus
                     style={{ width: '100%' }}
                     onKeyDown={(e) => {
