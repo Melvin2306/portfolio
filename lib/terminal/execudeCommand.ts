@@ -1,6 +1,13 @@
 import { terminalCommands } from '@/lib/terminal/terminalCommands';
+import { TerminalOutput as TerminalOutputType } from '@/types/output';
 
-export function executeCommand(input: string): string {
+let emyptyOutput: TerminalOutputType = {
+  id: 0,
+  user: '',
+  output: [],
+};
+
+export function executeCommand(input: string): TerminalOutputType {
   const selectedCommand = terminalCommands.find((cmd) => cmd.command === input);
 
   if (selectedCommand) {
@@ -8,6 +15,11 @@ export function executeCommand(input: string): string {
     return output;
   } else {
     console.log(`Command not found: ${input}`);
-    return '';
+    const emyptyOutput: TerminalOutputType = {
+      id: 0,
+      user: '',
+      output: [`Command not found: ${input}`],
+    };
+    return emyptyOutput;
   }
 }
