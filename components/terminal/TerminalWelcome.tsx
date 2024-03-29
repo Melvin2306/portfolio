@@ -14,7 +14,7 @@ function TerminalWelcome() {
   const [CPU, setCPU] = useState('x86_64');
   const [model, setModel] = useState('Linux');
   const [vendor, setVendor] = useState('Lenovo');
-  const [startTime] = useState(new Date()); // Store the session start time
+  const [startTime] = useState(new Date());
   const [uptime, setUptime] = useState('0m');
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -60,20 +60,19 @@ function TerminalWelcome() {
   useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date();
-      const diff = now.getTime() - startTime.getTime(); // difference in milliseconds
+      const diff = now.getTime() - startTime.getTime();
       const minutes = Math.floor(diff / 60000);
-      setUptime(`${minutes}m`); // Update uptime every second
+      setUptime(`${minutes}m`);
     }, 1000);
 
-    return () => clearInterval(interval); // Cleanup on component unmount
+    return () => clearInterval(interval);
   }, [startTime]);
 
-  const welcomeText = 'Welcome to the terminal';
   const welcomeInfo = [
     'guest@host',
     `OS: ${browserName} ${browserVersion} on ${OS} ${OSVersion}`,
     `Kernel: ${CPU} ${model} ${vendor}`,
-    `Uptime: ${uptime}`, // Display the dynamic uptime
+    `Uptime: ${uptime}`,
     'Packages: 420',
     'Shell: bash',
     `CPU: ${CPU}`,

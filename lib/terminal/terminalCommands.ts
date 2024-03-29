@@ -1,7 +1,7 @@
 import { cd } from '@/lib/terminal/commands/cd';
 import { clear } from '@/lib/terminal/commands/clear';
 import { help } from '@/lib/terminal/commands/help';
-import { ls } from '@/lib/terminal/commands/ls';
+import { ls } from '@/lib/terminal/commands/ls/ls';
 import { pwd } from '@/lib/terminal/commands/pwd';
 import { whoami } from '@/lib/terminal/commands/whoami';
 import { CommandMapping } from '@/types/commandMapping';

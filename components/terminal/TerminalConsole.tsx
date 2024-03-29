@@ -7,16 +7,25 @@ import { z } from 'zod';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { executeCommand } from '@/lib/terminal/execudeCommand';
+import { TerminalOutput as TerminalOutputType } from '@/types/output';
 
 interface TerminalConsoleProps {
-  onCommandExecute: (output: string) => void;
+  onCommandExecute: (output: TerminalOutputType) => void;
 }
 
 function TerminalConsole({ onCommandExecute }: TerminalConsoleProps) {
   const formSchema = z.object({
-    command: z.string().min(2, {
-      message: 'command must be at least 2 characters long',
-    }),
+    command: z
+      .string()
+      .min(2, {
+        message: 'command must be at least 2 characters long',
+      })
+      .max(50, {
+        message: 'command must be at most 50 characters long',
+      })
+      .regex(/^[a-zA-Z0-9\s]+$/, {
+        message: 'command must contain only letters, numbers, and spaces',
+      }),
   });
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -26,20 +35,21 @@ function TerminalConsole({ onCommandExecute }: TerminalConsoleProps) {
   });
   function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      const result = executeCommand(values.command);
-      if (result !== '') {
-        onCommandExecute(result);
-      } else {
-        onCommandExecute(`Command not found: ${values.command}`);
-      }
+      const result: TerminalOutputType = executeCommand(values.command);
+      onCommandExecute(result);
     } catch (error) {
       if (error instanceof Error) {
-        onCommandExecute(`Error: ${error.message}`);
+        const errorOutput: TerminalOutputType = {
+          user: '',
+          output: [`Error: ${error.message}`],
+        };
+        onCommandExecute(errorOutput);
       } else {
-        onCommandExecute(
-          'An unknown error occurred, check the console for more information.'
-        );
-        console.error('An unknown error occurred:', error);
+        const errorOutput: TerminalOutputType = {
+          user: '',
+          output: ['An error occurred'],
+        };
+        onCommandExecute(errorOutput);
       }
     }
   }
