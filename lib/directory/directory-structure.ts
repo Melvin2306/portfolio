@@ -9,6 +9,7 @@ export const directoryStructure = {
     permissions: {
       read: ['guest', 'admin'],
     },
+    visibility: 'visible',
     contents: {
       homeDir,
       varDir,

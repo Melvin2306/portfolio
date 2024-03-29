@@ -1,4 +1,6 @@
-export const varDir = {
+import { Directory } from '@/types/directory';
+
+export const varDir: Directory = {
   var: {
     type: 'directory',
     permissions: {
@@ -10,6 +12,7 @@ export const varDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: {
           syslog: {
             type: 'file',

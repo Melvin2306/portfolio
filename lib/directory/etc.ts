@@ -1,4 +1,6 @@
-export const etcDir = {
+import { Directory } from '@/types/directory';
+
+export const etcDir: Directory = {
   etc: {
     type: 'directory',
     permissions: {
@@ -10,6 +12,7 @@ export const etcDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'hosts',
       },
     },

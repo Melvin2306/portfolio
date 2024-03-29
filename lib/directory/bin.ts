@@ -1,4 +1,6 @@
-export const binDir = {
+import { Directory } from '@/types/directory';
+
+export const binDir: Directory = {
   bin: {
     type: 'directory',
     permissions: {
@@ -10,6 +12,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'ls',
       },
       cat: {
@@ -17,6 +20,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'cat',
       },
       cd: {
@@ -24,6 +28,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'cd',
       },
       pwd: {
@@ -31,6 +36,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'pwd',
       },
       clear: {
@@ -38,6 +44,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'clear',
       },
       rm: {
@@ -45,6 +52,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'rm',
       },
       mkdir: {
@@ -52,6 +60,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'mkdir',
       },
       touch: {
@@ -59,6 +68,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'touch',
       },
       mv: {
@@ -66,6 +76,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'mv',
       },
       cp: {
@@ -73,6 +84,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'cp',
       },
       find: {
@@ -80,6 +92,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'find',
       },
       grep: {
@@ -87,6 +100,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'grep',
       },
       echo: {
@@ -94,6 +108,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'echo',
       },
       more: {
@@ -101,6 +116,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'more',
       },
       less: {
@@ -108,6 +124,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'less',
       },
       head: {
@@ -115,6 +132,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'head',
       },
       tail: {
@@ -122,6 +140,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'tail',
       },
       wc: {
@@ -129,6 +148,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'wc',
       },
       sort: {
@@ -136,6 +156,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'sort',
       },
       uniq: {
@@ -143,6 +164,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'uniq',
       },
       chmod: {
@@ -150,6 +172,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'chmod',
       },
       chown: {
@@ -157,6 +180,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'chown',
       },
       chgrp: {
@@ -164,6 +188,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'chgrp',
       },
       date: {
@@ -171,6 +196,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'date',
       },
       cal: {
@@ -178,6 +204,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'cal',
       },
       who: {
@@ -185,6 +212,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'who',
       },
       w: {
@@ -192,6 +220,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'w',
       },
       ps: {
@@ -199,6 +228,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'ps',
       },
       kill: {
@@ -206,6 +236,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'kill',
       },
       su: {
@@ -213,6 +244,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'su',
       },
       sudo: {
@@ -220,6 +252,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'sudo',
       },
       passwd: {
@@ -227,6 +260,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'passwd',
       },
       useradd: {
@@ -234,6 +268,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'useradd',
       },
       userdel: {
@@ -241,6 +276,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'userdel',
       },
       usermod: {
@@ -248,6 +284,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'usermod',
       },
       groupadd: {
@@ -255,6 +292,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'groupadd',
       },
       groupdel: {
@@ -262,6 +300,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'groupdel',
       },
       groupmod: {
@@ -269,6 +308,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'groupmod',
       },
       groups: {
@@ -276,6 +316,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'groups',
       },
       id: {
@@ -283,6 +324,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'id',
       },
       last: {
@@ -290,6 +332,7 @@ export const binDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: 'last',
       },
     },

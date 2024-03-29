@@ -1,12 +1,11 @@
+import { Directory } from '@/types/directory';
 import { educationDir } from './education';
 import { aboutFile } from './files/about';
-import { allEducationFile } from './files/all-education';
-import { allWorkFile } from './files/all-work';
 import { contactFile } from './files/contact';
 import { projectsDir } from './projects';
 import { workDir } from './work';
 
-export const homeDir = {
+export const homeDir: Directory = {
   home: {
     type: 'directory',
     permissions: {
@@ -18,6 +17,7 @@ export const homeDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: aboutFile,
       },
       projects: {
@@ -25,6 +25,7 @@ export const homeDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: {
           projectsDir,
         },
@@ -34,6 +35,7 @@ export const homeDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: {
           workDir,
         },
@@ -43,6 +45,7 @@ export const homeDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: {
           educationDir,
         },
@@ -52,6 +55,7 @@ export const homeDir = {
         permissions: {
           read: ['guest', 'admin'],
         },
+        visibility: 'visible',
         contents: contactFile,
       },
     },
