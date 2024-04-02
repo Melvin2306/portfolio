@@ -1,27 +1,51 @@
-import { allProjectsFile } from './files/projects/all-projects';
+import { allVoluntaryFile } from './files/voluntary/all-voluntary';
 import { Directory } from '@/types/directory';
-import { opinioFile } from './files/projects/opinio';
-import { slashFile } from './files/projects/slash';
-import { spotifyFile } from './files/projects/spotify';
-import { peachesFile } from './files/projects/peaches';
-import { hswProjectFile } from './files/projects/hsw-project';
+import { chancenFile } from './files/voluntary/chancen';
+import { refereeFile } from './files/voluntary/referee';
+import { sc1File } from './files/voluntary/sc1';
+import { sc2File } from './files/voluntary/sc2';
+import { slashFile } from './files/voluntary/slash';
 
-export const projectsDir: Directory = {
-  'all-projects': {
+export const allVoluntaryDir: Directory = {
+  'all-voluntary': {
     type: 'file',
     permissions: {
       read: ['guest', 'admin'],
     },
     visibility: 'visible',
-    contents: allProjectsFile,
+    contents: allVoluntaryFile,
   },
-  opinio: {
+  chancen: {
     type: 'file',
     permissions: {
       read: ['guest', 'admin'],
     },
     visibility: 'visible',
-    contents: opinioFile,
+    contents: chancenFile,
+  },
+  referee: {
+    type: 'file',
+    permissions: {
+      read: ['guest', 'admin'],
+    },
+    visibility: 'visible',
+    contents: refereeFile,
+  },
+  sc1: {
+    type: 'file',
+    permissions: {
+      read: ['guest', 'admin'],
+    },
+    visibility: 'visible',
+    contents: sc1File,
+  },
+  sc2: {
+    type: 'file',
+    permissions: {
+      read: ['guest', 'admin'],
+    },
+    visibility: 'visible',
+    contents: sc2File,
   },
   slash: {
     type: 'file',
@@ -30,29 +54,5 @@ export const projectsDir: Directory = {
     },
     visibility: 'visible',
     contents: slashFile,
-  },
-  spotify: {
-    type: 'file',
-    permissions: {
-      read: ['guest', 'admin'],
-    },
-    visibility: 'visible',
-    contents: spotifyFile,
-  },
-  peaches: {
-    type: 'file',
-    permissions: {
-      read: ['guest', 'admin'],
-    },
-    visibility: 'visible',
-    contents: peachesFile,
-  },
-  hswProject: {
-    type: 'file',
-    permissions: {
-      read: ['guest', 'admin'],
-    },
-    visibility: 'visible',
-    contents: hswProjectFile,
   },
 };
