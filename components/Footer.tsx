@@ -4,19 +4,26 @@ import { ThemeToggle } from '@/components/theme/ThemeToggle';
 import { GithubIcon, LinkedinIcon, YoutubeIcon } from 'lucide-react';
 
 function Footer() {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState<number>(0);
 
   useEffect(() => {
+    // Set the initial value
+    setWindowWidth(window.innerWidth);
+
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
 
     window.addEventListener('resize', handleResize);
 
+    // Cleanup listener on unmount
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, []); // The empty array causes this effect to only run on mount
+
+  // Use `windowWidth` safely here; it will be `undefined` on the server, but that's okay
+
   return (
     <div className='h-2/10 flex items-center justify-between'>
       <div className='flex flex-row items-center gap-3 '>
@@ -44,7 +51,9 @@ function Footer() {
       </div>
 
       <div className='flex flex-row items-center gap-2 '>
-        <p className={`${window.innerWidth < 550 ? 'hidden' : ''}`}>
+        <p
+          className={`${typeof windowWidth !== 'undefined' && windowWidth < 550 ? 'hidden' : ''}`}
+        >
           Change dark/light mode
         </p>
         <ThemeToggle />

@@ -16,9 +16,16 @@ function TerminalWelcome() {
   const [vendor, setVendor] = useState('Lenovo');
   const [startTime] = useState(new Date());
   const [uptime, setUptime] = useState('0m');
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState<number>(0);
 
   useEffect(() => {
+    setWindowWidth(window.innerWidth);
+
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
     if (typeof navigator !== 'undefined') {
       setUserAgent(navigator.userAgent);
       const parser = new UAParser();
@@ -46,14 +53,9 @@ function TerminalWelcome() {
         setCPU(UA.cpu.architecture as string);
       }
     }
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    window.addEventListener('resize', handleResize);
-
     return () => {
       window.removeEventListener('resize', handleResize);
+      // Clear any intervals or timeouts if any
     };
   }, []);
 
@@ -67,6 +69,19 @@ function TerminalWelcome() {
 
     return () => clearInterval(interval);
   }, [startTime]);
+
+  const getASCIIArt = () => {
+    // Only determine ASCII art size if windowWidth is defined
+    if (typeof windowWidth === 'undefined') return ASCIIArtMedium; // Default or placeholder
+
+    if (windowWidth < 630) {
+      return ASCIIArtSmall;
+    } else if (windowWidth < 750) {
+      return ASCIIArtMedium;
+    } else {
+      return ASCIIArtBig;
+    }
+  };
 
   const welcomeInfo = [
     'guest@host',
@@ -82,15 +97,11 @@ function TerminalWelcome() {
   return (
     <div className='grid w-full grid-cols-6'>
       <div className='col-span-4'>
-        <pre>
-          {window.innerWidth < 630
-            ? ASCIIArtSmall
-            : window.innerWidth < 750
-              ? ASCIIArtMedium
-              : ASCIIArtBig}
-        </pre>
+        <pre>{getASCIIArt()}</pre>
       </div>
-      <div className={`col-span-2 ${window.innerWidth < 1030 ? 'hidden' : ''}`}>
+      <div
+        className={`col-span-2 ${typeof windowWidth !== 'undefined' && windowWidth < 1030 ? 'hidden' : ''}`}
+      >
         <ul>
           {welcomeInfo.map((info) => (
             <li key={info}>{info}</li>
