@@ -4,8 +4,10 @@ import { UAParser } from 'ua-parser-js';
 import { ASCIIArtBig } from '@/lib/ascii/ascii-big';
 import { ASCIIArtSmall } from '@/lib/ascii/ascii-small';
 import { ASCIIArtMedium } from '@/lib/ascii/ascii-medium';
+import { useUser } from '@/context/UserContext';
 
 function TerminalWelcome() {
+  const { currentUser, setCurrentUser } = useUser();
   const [userAgent, setUserAgent] = useState('');
   const [browserName, setBrowserName] = useState('Firefox');
   const [browserVersion, setBrowserVersion] = useState('89.0');
@@ -89,7 +91,7 @@ function TerminalWelcome() {
   };
 
   const welcomeInfo = [
-    { key: 'guest@host', value: '' },
+    { key: `${currentUser}@host`, value: '' },
     {
       key: 'OS',
       value: `${browserName} ${browserVersion} on ${OS} ${OSVersion}`,
