@@ -9,7 +9,7 @@ interface TerminalInputProps {
 
 function TerminalInput({ onCommandExecute }: TerminalInputProps) {
   return (
-    <div className='h-3/10 absolute bottom-0 flex w-full flex-row gap-2 border-t border-white bg-black px-3 pb-1'>
+    <div className='h-3/10 absolute bottom-0 flex w-full flex-row gap-2 border-t border-primary bg-background px-3 pb-1'>
       <TerminalLocator />
       <TerminalConsole onCommandExecute={onCommandExecute} />
     </div>

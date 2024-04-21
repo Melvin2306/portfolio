@@ -1,32 +1,43 @@
 'use client';
-import { useEffect } from 'react';
-import { motion, stagger, useAnimate } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { useAnimate } from 'framer-motion';
 
 export const TextGenerateEffect = ({ words }: { words: string }) => {
   const [scope, animate] = useAnimate();
   let wordsArray = words.split(' ');
+
   useEffect(() => {
-    animate(
-      'span',
-      {
-        opacity: 1,
-      },
-      {
-        duration: 2,
-        delay: stagger(0.2),
-      }
-    );
-  }, [scope.current]);
+    wordsArray.forEach((_, index) => {
+      animate(
+        scope.current.children[index],
+        {
+          opacity: 1,
+        },
+        {
+          duration: 2,
+          delay: index * 0.07,
+        }
+      );
+    });
+  }, [wordsArray, scope, animate]);
 
   const renderWords = () => {
     return (
       <motion.div ref={scope}>
         {wordsArray.map((word, idx) => {
+          let style = {};
+          if (word === 'Melvin' || word === 'Rinkleff.') {
+            style = 'font-bold text-red-500';
+          } else if (word === "'commands'") {
+            style = 'font-bold';
+          } else if (word === '♡') {
+            style = 'font-bold text-red-500';
+          } else if (word === '<specific' || word === "command>'") {
+            style = 'italic';
+          }
           return (
-            <motion.span
-              key={word + idx}
-              className='text-black opacity-0 dark:text-white'
-            >
+            <motion.span key={word + idx} className={`opacity-0  ${style}`}>
               {word}{' '}
             </motion.span>
           );
@@ -38,7 +49,7 @@ export const TextGenerateEffect = ({ words }: { words: string }) => {
   return (
     <div>
       <div className='mt-4'>
-        <div className='leading-snug tracking-wide text-black dark:text-white'>
+        <div className='cursor-default leading-snug tracking-wide text-black dark:text-white'>
           {renderWords()}
         </div>
       </div>

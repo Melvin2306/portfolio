@@ -1,6 +1,4 @@
-import { TerminalOutput as TerminalOutputType } from '@/types/output';
-
-type commandFunction = (input: string) => TerminalOutputType;
+type commandFunction = (input: string) => Array<string>;
 
 export type CommandMapping = {
   command: string;

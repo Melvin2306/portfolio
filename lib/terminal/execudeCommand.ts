@@ -3,15 +3,19 @@ import { TerminalOutput as TerminalOutputType } from '@/types/output';
 
 export function executeCommand(input: string): TerminalOutputType {
   const selectedCommand = terminalCommands.find((cmd) => cmd.command === input);
+  const previousCommand = input;
+  let output: TerminalOutputType = {
+    user: '',
+    output: [previousCommand],
+  };
 
   if (selectedCommand) {
-    const output = selectedCommand.function(input);
+    const commandOutput = selectedCommand.function(input);
+    output.output.push(...commandOutput);
     return output;
   } else {
-    const emyptyOutput: TerminalOutputType = {
-      user: '',
-      output: [`Command not found: ${input}`],
-    };
-    return emyptyOutput;
+    const error: string = `Command not found: ${input}`;
+    output.output.push(error);
+    return output;
   }
 }
