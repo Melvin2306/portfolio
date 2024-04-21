@@ -17,6 +17,7 @@ function TerminalWelcome() {
   const [startTime] = useState(new Date());
   const [uptime, setUptime] = useState('0m');
   const [windowWidth, setWindowWidth] = useState<number>(0);
+  const [keyColorClass, setKeyColorClass] = useState('text-red-500');
 
   useEffect(() => {
     setWindowWidth(window.innerWidth);
@@ -70,6 +71,10 @@ function TerminalWelcome() {
     return () => clearInterval(interval);
   }, [startTime]);
 
+  const changeKeyColor = (color: string) => {
+    setKeyColorClass(color);
+  };
+
   const getASCIIArt = () => {
     // Only determine ASCII art size if windowWidth is defined
     if (typeof windowWidth === 'undefined') return ASCIIArtMedium; // Default or placeholder
@@ -84,27 +89,33 @@ function TerminalWelcome() {
   };
 
   const welcomeInfo = [
-    'guest@host',
-    `OS: ${browserName} ${browserVersion} on ${OS} ${OSVersion}`,
-    `Kernel: ${CPU} ${model} ${vendor}`,
-    `Uptime: ${uptime}`,
-    'Packages: 420',
-    'Shell: bash',
-    `CPU: ${CPU}`,
-    'RAM: 6455MiB / 16276MB',
+    { key: 'guest@host', value: '' },
+    {
+      key: 'OS',
+      value: `${browserName} ${browserVersion} on ${OS} ${OSVersion}`,
+    },
+    { key: 'Kernel', value: `${CPU} ${model} ${vendor}` },
+    { key: 'Uptime', value: `${uptime}` },
+    { key: 'Packages', value: '420' },
+    { key: 'Shell', value: 'bash' },
+    { key: 'CPU', value: `${CPU}` },
+    { key: 'RAM', value: '6455MiB / 16276MB' },
   ];
 
   return (
     <div className='grid w-full grid-cols-6'>
       <div className='col-span-4'>
-        <pre>{getASCIIArt()}</pre>
+        <pre className='cursor-default'>{getASCIIArt()}</pre>
       </div>
       <div
-        className={`col-span-2 ${typeof windowWidth !== 'undefined' && windowWidth < 1030 ? 'hidden' : ''}`}
+        className={`col-span-2 cursor-default ${typeof windowWidth !== 'undefined' && windowWidth < 1030 ? 'hidden' : ''}`}
       >
         <ul>
           {welcomeInfo.map((info) => (
-            <li key={info}>{info}</li>
+            <li key={info.key}>
+              <span className={`${keyColorClass} font-bold`}>{info.key}:</span>{' '}
+              {info.value}
+            </li>
           ))}
         </ul>
       </div>
