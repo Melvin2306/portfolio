@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import '@/styles/globals.css';
 import { ThemeProvider } from '@/components/theme/ThemeProvider';
+import { DirectoryProvider } from '@/context/DirectoryContext';
+import { UserProvider } from '@/context/UserContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -24,7 +26,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <UserProvider>
+            <DirectoryProvider>{children}</DirectoryProvider>
+          </UserProvider>
         </ThemeProvider>
       </body>
     </html>
