@@ -4,7 +4,7 @@ import TerminalConsole from '@/components/terminal/TerminalConsole';
 import { TerminalOutput as TerminalOutputType } from '@/types/output';
 
 interface TerminalInputProps {
-  onCommandExecute: (output: TerminalOutputType) => void;
+  onCommandExecute: (newOutput: TerminalOutputType, command: string) => void;
 }
 
 function TerminalInput({ onCommandExecute }: TerminalInputProps) {

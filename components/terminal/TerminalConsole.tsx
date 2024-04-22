@@ -8,9 +8,8 @@ import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { executeCommand } from '@/lib/terminal/execudeCommand';
 import { TerminalOutput as TerminalOutputType } from '@/types/output';
-
 interface TerminalConsoleProps {
-  onCommandExecute: (output: TerminalOutputType) => void;
+  onCommandExecute: (newOutput: TerminalOutputType, command: string) => void;
 }
 
 function TerminalConsole({ onCommandExecute }: TerminalConsoleProps) {
@@ -39,20 +38,20 @@ function TerminalConsole({ onCommandExecute }: TerminalConsoleProps) {
   function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       const result: TerminalOutputType = executeCommand(values.command);
-      onCommandExecute(result);
+      onCommandExecute(result, values.command);
     } catch (error) {
       if (error instanceof Error) {
         const errorOutput: TerminalOutputType = {
           user: '',
           output: [`Error: ${error.message}`],
         };
-        onCommandExecute(errorOutput);
+        onCommandExecute(errorOutput, values.command);
       } else {
         const errorOutput: TerminalOutputType = {
           user: '',
           output: ['An error occurred'],
         };
-        onCommandExecute(errorOutput);
+        onCommandExecute(errorOutput, values.command);
       }
     }
     setCommandHistory([...commandHistory, values.command]);

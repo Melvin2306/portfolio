@@ -6,7 +6,7 @@ export function executeCommand(input: string): TerminalOutputType {
   const previousCommand = input;
   let output: TerminalOutputType = {
     user: '',
-    output: [previousCommand],
+    output: [],
   };
 
   if (selectedCommand) {
