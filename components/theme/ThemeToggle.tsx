@@ -42,7 +42,7 @@ export function ThemeToggle() {
           Light
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme('dark')}>
-          Dark (Preferred)
+          Dark (Recommended)
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme('system')}>
           System
