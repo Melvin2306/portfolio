@@ -1,6 +1,6 @@
 import { cd } from '@/lib/terminal/commands/cd';
 import { clear } from '@/lib/terminal/commands/clear';
-import { help } from '@/lib/terminal/commands/help';
+import { commands } from '@/lib/terminal/commands/commands';
 import { ls } from '@/lib/terminal/commands/ls/ls';
 import { pwd } from '@/lib/terminal/commands/pwd';
 import { whoami } from '@/lib/terminal/commands/whoami';
@@ -20,10 +20,10 @@ export const terminalCommands: CommandMapping[] = [
     function: clear,
   },
   {
-    command: 'help',
+    command: 'commands',
     description: 'List all available commands',
-    usage: 'help',
-    function: help,
+    usage: 'commands',
+    function: commands,
   },
   {
     command: 'ls',

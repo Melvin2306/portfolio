@@ -1,7 +1,13 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
-import { GithubIcon, LinkedinIcon, YoutubeIcon } from 'lucide-react';
+import {
+  GithubIcon,
+  InstagramIcon,
+  LinkedinIcon,
+  LucideAtSign,
+  YoutubeIcon,
+} from 'lucide-react';
 import {
   Tooltip,
   TooltipContent,
@@ -57,6 +63,7 @@ function Footer() {
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
+
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger>
@@ -81,6 +88,7 @@ function Footer() {
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
+
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger>
@@ -100,6 +108,54 @@ function Footer() {
                 Rinkleff
                 <br />
                 Just click the icon and the link will open in a new tab
+              </span>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>
+              <a
+                className='cursor-default hover:text-fuchsia-400'
+                href='https://www.instagram.com/melvin_2306/'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                {' '}
+                <InstagramIcon size={18} />
+              </a>
+            </TooltipTrigger>
+            <TooltipContent className='whitespace-normal break-words'>
+              <span>
+                Link to <span className='text-fuchsia-400'>Instagram</span> of
+                Melvin Rinkleff
+                <br />
+                Just click the icon and the link will open in a new tab
+              </span>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>
+              <a
+                className='cursor-default hover:text-lime-500'
+                href='mailto:melvin.rinkleff@gmx.de'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                {' '}
+                <LucideAtSign size={18} />
+              </a>
+            </TooltipTrigger>
+            <TooltipContent className='whitespace-normal break-words'>
+              <span>
+                Link to open your mail program and send an{' '}
+                <span className='text-lime-500'>Email</span> to Melvin Rinkleff
+                <br />
+                Just click the icon and email will open in your default mail app
               </span>
             </TooltipContent>
           </Tooltip>
