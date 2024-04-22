@@ -29,10 +29,12 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <UserProvider>
-            <DirectoryProvider>{children}</DirectoryProvider>
+            <DirectoryProvider>
+              {children}
+              <Analytics />
+              <SpeedInsights />
+            </DirectoryProvider>
           </UserProvider>
-          <Analytics />
-          <SpeedInsights />
         </ThemeProvider>
       </body>
     </html>
