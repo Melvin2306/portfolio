@@ -14,6 +14,9 @@ interface TerminalConsoleProps {
 }
 
 function TerminalConsole({ onCommandExecute }: TerminalConsoleProps) {
+  const [commandHistory, setCommandHistory] = React.useState<string[]>([]);
+  const [historyIndex, setHistoryIndex] = React.useState<number>(-1);
+
   const formSchema = z.object({
     command: z
       .string()
@@ -52,6 +55,35 @@ function TerminalConsole({ onCommandExecute }: TerminalConsoleProps) {
         onCommandExecute(errorOutput);
       }
     }
+    setCommandHistory([...commandHistory, values.command]);
+    setHistoryIndex(-1);
+    form.reset();
+  }
+
+  function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === 'Enter') {
+      // ... (execution code remains unchanged)
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      const newHistoryIndex = historyIndex + 1;
+      if (newHistoryIndex < commandHistory.length) {
+        setHistoryIndex(newHistoryIndex);
+        const previousCommand =
+          commandHistory[commandHistory.length - 1 - newHistoryIndex];
+        form.setValue('command', previousCommand, { shouldValidate: true });
+      }
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      const newHistoryIndex = historyIndex - 1;
+      if (newHistoryIndex >= -1) {
+        setHistoryIndex(newHistoryIndex);
+        const nextCommand =
+          newHistoryIndex === -1
+            ? ''
+            : commandHistory[commandHistory.length - 1 - newHistoryIndex];
+        form.setValue('command', nextCommand, { shouldValidate: true });
+      }
+    }
   }
 
   return (
@@ -69,11 +101,7 @@ function TerminalConsole({ onCommandExecute }: TerminalConsoleProps) {
                     placeholder='Type your command here...'
                     autoFocus
                     style={{ width: '100%' }}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        form.handleSubmit(onSubmit)();
-                      }
-                    }}
+                    onKeyDown={handleKeyDown}
                     {...field}
                   />
                 </FormControl>
