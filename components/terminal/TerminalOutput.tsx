@@ -34,9 +34,7 @@ function TerminalOutput({
         {user}@{host}: {directory} {lastCommand}
       </span>
       {output.output.map((line: string, index: number) => (
-        <div className='text-red-500' key={index}>
-          {line}
-        </div>
+        <div key={index}>{line}</div>
       ))}
       <div ref={outputEndRef} />
     </div>
