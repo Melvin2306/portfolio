@@ -5,9 +5,49 @@ import { ASCIIArtBig } from '@/lib/ascii/ascii-big';
 import { ASCIIArtSmall } from '@/lib/ascii/ascii-small';
 import { ASCIIArtMedium } from '@/lib/ascii/ascii-medium';
 import { useUser } from '@/context/UserContext';
+import { useMotionValue } from 'framer-motion';
+import { useMotionTemplate, motion } from 'framer-motion';
+import { cn } from '@/utils/cn';
+
+const characters =
+  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+const generateRandomString = (length: number) => {
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return result;
+};
+
+function CardPattern({ mouseX, mouseY, randomString }: any) {
+  let maskImage = useMotionTemplate`radial-gradient(160px at ${mouseX}px ${mouseY}px, white, transparent)`;
+  let style = { maskImage, WebkitMaskImage: maskImage };
+
+  return (
+    <div className='pointer-events-none'>
+      <div className='[mask-image:linear-gradient(white, transparent)] absolute inset-0 rounded-2xl group-hover/card:opacity-50'></div>
+      <motion.div
+        className='absolute inset-0 rounded-2xl bg-red-700 opacity-0 backdrop-blur-xl transition duration-500 group-hover/card:opacity-20'
+        style={style}
+      />
+      <motion.div
+        className='absolute inset-0 rounded-2xl opacity-0 mix-blend-overlay group-hover/card:opacity-100'
+        style={style}
+      >
+        <p className='absolute inset-x-0 h-full whitespace-pre-wrap break-words font-mono text-xs text-red-300 transition duration-500'>
+          {randomString}
+        </p>
+      </motion.div>
+    </div>
+  );
+}
 
 function TerminalWelcome() {
-  const { currentUser, setCurrentUser } = useUser();
+  let mouseX = useMotionValue(0);
+  let mouseY = useMotionValue(0);
+
+  const [randomString, setRandomString] = useState('');
+  const { currentUser } = useUser();
   const [userAgent, setUserAgent] = useState('');
   const [browserName, setBrowserName] = useState('Firefox');
   const [browserVersion, setBrowserVersion] = useState('89.0');
@@ -27,6 +67,9 @@ function TerminalWelcome() {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
+
+    let str = generateRandomString(150000);
+    setRandomString(str);
 
     window.addEventListener('resize', handleResize);
     if (typeof navigator !== 'undefined') {
@@ -73,6 +116,15 @@ function TerminalWelcome() {
     return () => clearInterval(interval);
   }, [startTime]);
 
+  function onMouseMove({ currentTarget, clientX, clientY }: any) {
+    let { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+
+    const str = generateRandomString(150000);
+    setRandomString(str);
+  }
+
   const changeKeyColor = (color: string) => {
     setKeyColorClass(color);
   };
@@ -105,21 +157,39 @@ function TerminalWelcome() {
   ];
 
   return (
-    <div className='grid w-full grid-cols-6'>
-      <div className='col-span-4'>
-        <pre className='cursor-default'>{getASCIIArt()}</pre>
-      </div>
+    <div className={cn('relative h-full w-full rounded-full bg-transparent')}>
       <div
-        className={`col-span-2 cursor-default ${typeof windowWidth !== 'undefined' && windowWidth < 1030 ? 'hidden' : ''}`}
+        onMouseMove={onMouseMove}
+        className='group/card relative flex h-full w-full overflow-hidden rounded-3xl bg-transparent'
       >
-        <ul>
-          {welcomeInfo.map((info) => (
-            <li key={info.key}>
-              <span className={`${keyColorClass} font-bold`}>{info.key}:</span>{' '}
-              {info.value}
-            </li>
-          ))}
-        </ul>
+        <CardPattern
+          mouseX={mouseX}
+          mouseY={mouseY}
+          randomString={randomString}
+        />
+        <div className='relative z-10 flex'>
+          <div className='relative flex h-full w-full rounded-full'>
+            <div className='grid w-full grid-cols-6'>
+              <div className='col-span-4 mr-96'>
+                <pre className='cursor-default'>{getASCIIArt()}</pre>
+              </div>
+              <div
+                className={`col-span-2 cursor-default ${typeof windowWidth !== 'undefined' && windowWidth < 1030 ? 'hidden' : ''}`}
+              >
+                <ul>
+                  {welcomeInfo.map((info) => (
+                    <li key={info.key}>
+                      <span className={`${keyColorClass} font-bold`}>
+                        {info.key}:
+                      </span>{' '}
+                      {info.value}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
