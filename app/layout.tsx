@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/components/theme/ThemeProvider';
 import { DirectoryProvider } from '@/context/DirectoryContext';
 import { UserProvider } from '@/context/UserContext';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -31,6 +32,7 @@ export default function RootLayout({
             <DirectoryProvider>{children}</DirectoryProvider>
           </UserProvider>
           <Analytics />
+          <SpeedInsights />
         </ThemeProvider>
       </body>
     </html>
