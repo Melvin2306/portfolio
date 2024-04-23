@@ -24,23 +24,18 @@ function TerminalWindow() {
     newOutput: TerminalOutputType,
     command: string
   ) => {
+    const prompt = `${currentUser}@${currentHost}: ${currentDirectory} ${command}`;
     setLastCommand(command); // Update the last command
     setTerminalOutput((prevOutput) => ({
       ...prevOutput,
-      output: [...prevOutput.output, ...newOutput.output],
+      output: [...prevOutput.output, prompt, ...newOutput.output],
     }));
   };
 
   return (
     <div className='flex h-full flex-1 overflow-hidden rounded-xl border border-primary'>
       <div className='relative w-full'>
-        <TerminalDisplay
-          output={terminalOutput}
-          user={currentUser}
-          directory={currentDirectory}
-          host={currentHost}
-          lastCommand={lastCommand}
-        />
+        <TerminalDisplay output={terminalOutput} />
         <TerminalInput onCommandExecute={handleCommandExecution} />
       </div>
     </div>

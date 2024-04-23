@@ -8,30 +8,14 @@ import { ScrollArea, ScrollBar } from '../ui/scroll-area';
 
 interface TerminalDisplayProps {
   output: TerminalOutputType;
-  user: string;
-  directory: string;
-  host: string;
-  lastCommand: string;
 }
 
-function TerminalDisplay({
-  output,
-  user,
-  directory,
-  host,
-  lastCommand,
-}: TerminalDisplayProps) {
+function TerminalDisplay({ output }: TerminalDisplayProps) {
   return (
     <ScrollArea className='relative h-full p-3'>
       <TerminalWelcome />
       <TerminalTutorial />
-      <TerminalOutput
-        output={output}
-        user={user}
-        directory={directory}
-        host={host}
-        lastCommand={lastCommand}
-      />
+      <TerminalOutput output={output} />
       <ScrollBar />
     </ScrollArea>
   );

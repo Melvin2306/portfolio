@@ -8,6 +8,9 @@ import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { executeCommand } from '@/lib/terminal/execudeCommand';
 import { TerminalOutput as TerminalOutputType } from '@/types/output';
+import { TerminalInput } from '@/types/input';
+import { useDirectory } from '@/context/DirectoryContext';
+import { useUser } from '@/context/UserContext';
 interface TerminalConsoleProps {
   onCommandExecute: (newOutput: TerminalOutputType, command: string) => void;
 }
@@ -15,6 +18,8 @@ interface TerminalConsoleProps {
 function TerminalConsole({ onCommandExecute }: TerminalConsoleProps) {
   const [commandHistory, setCommandHistory] = React.useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = React.useState<number>(-1);
+  const { currentUser } = useUser();
+  const { currentDirectory } = useDirectory();
 
   const formSchema = z.object({
     command: z
@@ -36,9 +41,14 @@ function TerminalConsole({ onCommandExecute }: TerminalConsoleProps) {
     },
   });
   function onSubmit(values: z.infer<typeof formSchema>) {
+    const input: TerminalInput = {
+      user: currentUser,
+      directory: currentDirectory,
+      command: values.command,
+    };
     try {
-      const result: TerminalOutputType = executeCommand(values.command);
-      onCommandExecute(result, values.command);
+      const result: TerminalOutputType = executeCommand(input);
+      onCommandExecute(result, input.command);
     } catch (error) {
       if (error instanceof Error) {
         const errorOutput: TerminalOutputType = {
