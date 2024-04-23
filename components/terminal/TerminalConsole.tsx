@@ -97,6 +97,7 @@ function TerminalConsole({ onCommandExecute }: TerminalConsoleProps) {
                 <FormControl>
                   <Input
                     type='text'
+                    autoComplete='off'
                     placeholder='Type your command here...'
                     autoFocus
                     style={{ width: '100%' }}
