@@ -1,4 +1,4 @@
-import { CommandSplit } from "@/types/input";
+import { CommandSplit } from '@/types/input';
 
 export function splitCommand(input: string): CommandSplit {
   const args = input.match(/(?:[^\s"]+|"[^"]*")+/g) || [];
@@ -11,8 +11,8 @@ export function splitCommand(input: string): CommandSplit {
     // If it's a flag, add it to the flags array
     if (arg.startsWith('-')) {
       // Remove the dash and split flags if they are not GNU style long options
-      const flag = arg.replace(/^-+/,'');
-        flags.push(flag);
+      const flag = arg.replace(/^-+/, '');
+      flags.push(flag);
     } else if (!item) {
       // If the item has not been set yet, set it to the current argument
       item = arg.replace(/"/g, ''); // Remove quotes from the item if present

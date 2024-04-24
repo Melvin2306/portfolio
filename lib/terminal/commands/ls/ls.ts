@@ -11,7 +11,7 @@ export function ls(input: CommandInput): Array<string> {
   if (!directory) {
     return [`ls: cannot access '${input.directory}': No such directory`];
   }
-  
+
   // Check for permissions for the current user
   if (!directory.permissions.read.includes(input.user)) {
     return [`ls: permission denied: ${input.directory}`];
@@ -19,11 +19,13 @@ export function ls(input: CommandInput): Array<string> {
 
   // Function to determine if an item is visible
   const isVisible = (item: string, contents: Directory): boolean => {
-    return input.flags?.includes('-a') || contents[item].visibility !== 'hidden';
+    return (
+      input.flags?.includes('-a') || contents[item].visibility !== 'hidden'
+    );
   };
 
   // Get the names of all items in the directory that are visible
-  const items = Object.keys(directory.contents).filter(item =>
+  const items = Object.keys(directory.contents).filter((item) =>
     isVisible(item, directory.contents as Directory)
   );
 

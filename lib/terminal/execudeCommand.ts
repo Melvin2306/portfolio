@@ -18,26 +18,31 @@ export function executeCommand(input: TerminalInput): TerminalOutputType {
     item: splitInput.item,
     flags: splitInput.flags,
   };
-  
-    const selectedCommand = terminalCommands.find((cmd) => cmd.command === command)
-    if (selectedCommand) {
-      if (selectedCommand.command === 'cd') {
-        if (selectedCommand.function(commandInput)[0] === `cd: no such file or directory: ${commandInput.item}`) {
-          const error = selectedCommand.function(commandInput)[0];
-          terminalOutput.user = user;
-          terminalOutput.output.push(error);
-          return terminalOutput;
-        }
-        const directory = selectedCommand.function(commandInput);
+
+  const selectedCommand = terminalCommands.find(
+    (cmd) => cmd.command === command
+  );
+  if (selectedCommand) {
+    if (selectedCommand.command === 'cd') {
+      if (
+        selectedCommand.function(commandInput)[0] ===
+        `cd: no such file or directory: ${commandInput.item}`
+      ) {
+        const error = selectedCommand.function(commandInput)[0];
         terminalOutput.user = user;
-        terminalOutput.directory = directory[0];
+        terminalOutput.output.push(error);
         return terminalOutput;
       }
+      const directory = selectedCommand.function(commandInput);
+      terminalOutput.user = user;
+      terminalOutput.directory = directory[0];
+      return terminalOutput;
+    }
     const output = selectedCommand.function(commandInput);
     terminalOutput.output = output;
     terminalOutput.user = user;
     return terminalOutput;
-    } else {
+  } else {
     const error: string = `Command not found: ${command}`;
     terminalOutput.user = user;
     terminalOutput.output.push(error);

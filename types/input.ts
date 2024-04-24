@@ -5,9 +5,9 @@ export type TerminalInput = {
 };
 
 export type CommandSplit = {
-    command: string;
-    item: string;
-    flags: Array<string>;
+  command: string;
+  item: string;
+  flags: Array<string>;
 };
 
 export type CommandInput = {
