@@ -1,9 +1,9 @@
 import { Directory } from '@/types/directory';
-import { educationDir } from './education';
+import { educationDir } from './home/education';
 import { aboutFile } from './files/about';
 import { contactFile } from './files/contact';
-import { projectsDir } from './projects';
-import { workDir } from './work';
+import { projectsDir } from './home/projects';
+import { workDir } from './home/work';
 
 export const homeDir: Directory = {
   home: {

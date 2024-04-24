@@ -1,58 +1,58 @@
-import { allWorkFile } from './files/work/all-work';
+import { allVoluntaryFile } from '../files/voluntary/all-voluntary';
 import { Directory } from '@/types/directory';
-import { dualStudiesFile } from './files/work/dual-studies';
-import { encityFile } from './files/work/enercity';
-import { suenaFile } from './files/work/suena';
-import { ostromFile } from './files/work/ostrom';
-import { carbyteFile } from './files/work/carbyte';
+import { chancenFile } from '../files/voluntary/chancen';
+import { refereeFile } from '../files/voluntary/referee';
+import { sc1File } from '../files/voluntary/sc1';
+import { sc2File } from '../files/voluntary/sc2';
+import { slashFile } from '../files/voluntary/slash';
 
-export const workDir: Directory = {
-  'all-projects': {
+export const allVoluntaryDir: Directory = {
+  'all-voluntary': {
     type: 'file',
     permissions: {
       read: ['guest', 'admin'],
     },
     visibility: 'visible',
-    contents: allWorkFile,
+    contents: allVoluntaryFile,
   },
-  carbyte: {
+  chancen: {
     type: 'file',
     permissions: {
       read: ['guest', 'admin'],
     },
     visibility: 'visible',
-    contents: carbyteFile,
+    contents: chancenFile,
   },
-  suena: {
+  referee: {
     type: 'file',
     permissions: {
       read: ['guest', 'admin'],
     },
     visibility: 'visible',
-    contents: suenaFile,
+    contents: refereeFile,
   },
-  ostrom: {
+  sc1: {
     type: 'file',
     permissions: {
       read: ['guest', 'admin'],
     },
     visibility: 'visible',
-    contents: ostromFile,
+    contents: sc1File,
   },
-  enercity: {
+  sc2: {
     type: 'file',
     permissions: {
       read: ['guest', 'admin'],
     },
     visibility: 'visible',
-    contents: encityFile,
+    contents: sc2File,
   },
-  'dual-studies': {
+  slash: {
     type: 'file',
     permissions: {
       read: ['guest', 'admin'],
     },
     visibility: 'visible',
-    contents: dualStudiesFile,
+    contents: slashFile,
   },
 };

@@ -1,10 +1,10 @@
-import { allProjectsFile } from './files/projects/all-projects';
+import { allProjectsFile } from '../files/projects/all-projects';
 import { Directory } from '@/types/directory';
-import { opinioFile } from './files/projects/opinio';
-import { slashFile } from './files/projects/slash';
-import { spotifyFile } from './files/projects/spotify';
-import { peachesFile } from './files/projects/peaches';
-import { hswProjectFile } from './files/projects/hsw-project';
+import { opinioFile } from '../files/projects/opinio';
+import { slashFile } from '../files/projects/slash';
+import { spotifyFile } from '../files/projects/spotify';
+import { peachesFile } from '../files/projects/peaches';
+import { hswProjectFile } from '../files/projects/hsw-project';
 
 export const projectsDir: Directory = {
   'all-projects': {
