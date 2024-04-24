@@ -6,6 +6,15 @@ export function ls(input: CommandInput): Array<string> {
   // Retrieve the current directory from the input
   // @ts-ignore
   const directory = directoryStructure[input.directory];
+  console.log('directory input:', input.directory);
+  console.log('directory structure:', directory);
+  console.log('directory:', directory.contents);
+  if (directory.contents && directory.contents['home']) {
+    console.log('directory home:', directory.contents['home']);
+    console.log('directory home content:', directory.contents['home'].contents);
+  } else {
+    console.log('directory home: undefined');
+  }
 
   // If the directory does not exist, return an error message
   if (!directory) {
