@@ -3,25 +3,26 @@ import { CommandSplit, TerminalInput } from '@/types/input';
 import { TerminalOutput as TerminalOutputType } from '@/types/output';
 import { splitCommand } from './splitcommand';
 
-export function executeCommand(input: TerminalInput): TerminalOutputType {
-  const splitInput: CommandSplit = splitCommand(input.command);
-  const command = splitInput.command;
-  const user = input.user;
-  const directory = input.directory;
-  const selectedCommand = terminalCommands.find((cmd) => cmd.command === command[0]);
-  const previousCommand = command[0];
-  let output: TerminalOutputType = {
+export function executeCommand(input: TerminalInput, currentDirectory: string, currentUser: string): TerminalOutputType {
+  let terminalOutput: TerminalOutputType = {
     user: '',
     output: [],
   };
-
-  if (selectedCommand) {
-    const commandOutput = selectedCommand.function(command[0]);
-    output.output.push(...commandOutput);
-    return output;
-  } else {
-    const error: string = `Command not found: ${previousCommand}`;
-    output.output.push(error);
-    return output;
+  const splitInput: CommandSplit = splitCommand(input.command);
+  const command = splitInput.command;
+  const flags = splitInput.flags;
+  const user = input.user;
+  
+    const selectedCommand = terminalCommands.find((cmd) => cmd.command === command)
+    if (selectedCommand) {
+    const output = selectedCommand.function(currentDirectory, currentUser, flags);
+    terminalOutput.output = output;
+    terminalOutput.user = user;
+    return terminalOutput;
+    } else {
+    const error: string = `Command not found: ${command}`;
+    terminalOutput.user = user;
+    terminalOutput.output.push(error);
+    return terminalOutput;
   }
 }

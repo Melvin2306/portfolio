@@ -1,4 +1,4 @@
-type commandFunction = (input: string) => Array<string>;
+type commandFunction = (currentDirectory: string, currentUser: string, flags?: Array<string>, ) => Array<string>;
 
 export type CommandMapping = {
   command: string;

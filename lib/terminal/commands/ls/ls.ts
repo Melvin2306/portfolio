@@ -2,7 +2,7 @@ import { directoryStructure } from '@/lib/directory/directory-structure'; // Imp
 import { Directory } from '@/types/directory'; // Import the Directory type
 import { useDirectory } from '@/context/DirectoryContext'; // Import the useDirectory hook
 
-export function ls(input: string): Array<string> {
+export function ls(command: string, flags?: Array<string>): Array<string> {
   const { currentDirectory } = useDirectory(); // Use the hook to get the current directory
 
   // Access the current directory's contents from the directory structure

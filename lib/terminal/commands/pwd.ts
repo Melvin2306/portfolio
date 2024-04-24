@@ -1,7 +1,7 @@
 import { TerminalOutput as TerminalOutputType } from '@/types/output';
 import { emyptyOutput } from '@/lib/emptyOutput';
 
-export function pwd(input: string): Array<string> {
+export function pwd(command: string, flags?: Array<string>): Array<string> {
   const files = ['file1', 'file2', 'file3'];
   const output = files;
 

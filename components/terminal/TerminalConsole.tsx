@@ -47,7 +47,7 @@ function TerminalConsole({ onCommandExecute }: TerminalConsoleProps) {
       command: values.command,
     };
     try {
-      const result: TerminalOutputType = executeCommand(input);
+      const result: TerminalOutputType = executeCommand(input, currentUser, currentDirectory);
       onCommandExecute(result, input.command);
     } catch (error) {
       if (error instanceof Error) {

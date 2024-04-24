@@ -13,12 +13,12 @@ export const terminalCommands: CommandMapping[] = [
     usage: 'cd [directory]',
     function: cd,
   },
-  {
-    command: 'clear',
-    description: 'Clear the terminal',
-    usage: 'clear',
-    function: clear,
-  },
+  // {
+  //   command: 'clear',
+  //   description: 'Clear the terminal',
+  //   usage: 'clear',
+  //   function: clear,
+  // },
   {
     command: 'commands',
     description: 'List all available commands',
@@ -31,16 +31,16 @@ export const terminalCommands: CommandMapping[] = [
     usage: 'ls',
     function: ls,
   },
-  {
-    command: 'pwd',
-    description: 'Print working directory',
-    usage: 'pwd',
-    function: pwd,
-  },
-  {
-    command: 'whoami',
-    description: 'Print the current user',
-    usage: 'whoami',
-    function: whoami,
-  },
+  // {
+  //   command: 'pwd',
+  //   description: 'Print working directory',
+  //   usage: 'pwd',
+  //   function: pwd,
+  // },
+  // {
+  //   command: 'whoami',
+  //   description: 'Print the current user',
+  //   usage: 'whoami',
+  //   function: whoami,
+  // },
 ];
