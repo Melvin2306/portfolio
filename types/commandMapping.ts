@@ -1,4 +1,6 @@
-type commandFunction = (currentDirectory: string, currentUser: string, flags?: Array<string>, ) => Array<string>;
+import { CommandInput } from '@/types/input';
+
+type commandFunction = (input: CommandInput) => Array<string>;
 
 export type CommandMapping = {
   command: string;

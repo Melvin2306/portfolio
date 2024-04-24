@@ -1,5 +1,5 @@
 import { terminalCommands } from '@/lib/terminal/terminalCommands';
-import { CommandSplit, TerminalInput } from '@/types/input';
+import { CommandInput, CommandSplit, TerminalInput } from '@/types/input';
 import { TerminalOutput as TerminalOutputType } from '@/types/output';
 import { splitCommand } from './splitcommand';
 
@@ -10,12 +10,17 @@ export function executeCommand(input: TerminalInput, currentDirectory: string, c
   };
   const splitInput: CommandSplit = splitCommand(input.command);
   const command = splitInput.command;
-  const flags = splitInput.flags;
   const user = input.user;
+  const commandInput: CommandInput = {
+    directory: currentDirectory,
+    user: currentUser,
+    item: splitInput.item,
+    flags: splitInput.flags,
+  };
   
     const selectedCommand = terminalCommands.find((cmd) => cmd.command === command)
     if (selectedCommand) {
-    const output = selectedCommand.function(currentDirectory, currentUser, flags);
+    const output = selectedCommand.function(commandInput);
     terminalOutput.output = output;
     terminalOutput.user = user;
     return terminalOutput;

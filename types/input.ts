@@ -9,3 +9,10 @@ export type CommandSplit = {
     item: string;
     flags: Array<string>;
 };
+
+export type CommandInput = {
+  directory: string;
+  user: string;
+  item?: string;
+  flags?: Array<string>;
+};
