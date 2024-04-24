@@ -9,6 +9,7 @@ import { useHost } from '@/context/HostContext';
 
 let emyptyOutput: TerminalOutputType = {
   user: '',
+  directory: '',
   output: [],
 };
 
