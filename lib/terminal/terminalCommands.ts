@@ -1,9 +1,6 @@
 import { cd } from '@/lib/terminal/commands/cd/cd';
-import { clear } from '@/lib/terminal/commands/clear';
 import { commands } from '@/lib/terminal/commands/commands/commands';
 import { ls } from '@/lib/terminal/commands/ls/ls';
-import { pwd } from '@/lib/terminal/commands/pwd';
-import { whoami } from '@/lib/terminal/commands/whoami';
 import { CommandMapping } from '@/types/commandMapping';
 
 export const terminalCommands: CommandMapping[] = [

@@ -19,7 +19,7 @@ function TerminalConsole({ onCommandExecute }: TerminalConsoleProps) {
   const [commandHistory, setCommandHistory] = React.useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = React.useState<number>(-1);
   const { currentUser } = useUser();
-  const { currentDirectory } = useDirectory();
+  const { setCurrentDirectory, currentDirectory } = useDirectory();
 
   const formSchema = z.object({
     command: z
@@ -47,18 +47,23 @@ function TerminalConsole({ onCommandExecute }: TerminalConsoleProps) {
       command: values.command,
     };
     try {
-      const result: TerminalOutputType = executeCommand(input, currentUser, currentDirectory);
+      const result: TerminalOutputType = executeCommand(input);
+      if (result.directory !== currentDirectory) {
+        setCurrentDirectory(result.directory);
+      }
       onCommandExecute(result, input.command);
     } catch (error) {
       if (error instanceof Error) {
         const errorOutput: TerminalOutputType = {
-          user: '',
+          user: currentUser,
+          directory: currentDirectory,
           output: [`Error: ${error.message}`],
         };
         onCommandExecute(errorOutput, values.command);
       } else {
         const errorOutput: TerminalOutputType = {
-          user: '',
+          user: currentUser,
+          directory: currentDirectory,
           output: ['An error occurred'],
         };
         onCommandExecute(errorOutput, values.command);

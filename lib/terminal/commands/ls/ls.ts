@@ -1,21 +1,31 @@
 import { directoryStructure } from '@/lib/directory/directory-structure'; // Import the directory structure
 import { Directory } from '@/types/directory'; // Import the Directory type
-import { useDirectory } from '@/context/DirectoryContext'; // Import the useDirectory hook
+import { CommandInput } from '@/types/input';
 
-export function ls(command: string, flags?: Array<string>): Array<string> {
-  const { currentDirectory } = useDirectory(); // Use the hook to get the current directory
+export function ls(input: CommandInput): Array<string> {
+  // Retrieve the current directory from the input
+  // @ts-ignore
+  const directory = directoryStructure[input.directory];
 
-  // Access the current directory's contents from the directory structure
-  const directoryContents: Directory = directoryStructure[currentDirectory]?.contents;
-  if (!directoryContents) {
-    return [`ls: cannot access '${currentDirectory}': No such file or directory`];
+  // If the directory does not exist, return an error message
+  if (!directory) {
+    return [`ls: cannot access '${input.directory}': No such directory`];
+  }
+  
+  // Check for permissions for the current user
+  if (!directory.permissions.read.includes(input.user)) {
+    return [`ls: permission denied: ${input.directory}`];
   }
 
-  // Filter out the contents to return only visible items and sort them
-  const visibleItems = Object.entries(directoryContents)
-    .filter(([_, item]) => item.visibility === 'visible')
-    .map(([name, _]) => name)
-    .sort();
+  // Function to determine if an item is visible
+  const isVisible = (item: string, contents: Directory): boolean => {
+    return input.flags?.includes('-a') || contents[item].visibility !== 'hidden';
+  };
 
-  return visibleItems;
+  // Get the names of all items in the directory that are visible
+  const items = Object.keys(directory.contents).filter(item =>
+    isVisible(item, directory.contents as Directory)
+  );
+
+  return items;
 }

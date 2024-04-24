@@ -5,7 +5,7 @@ const DirectoryContext = createContext<{
   currentDirectory: string;
   setCurrentDirectory: (directory: string) => void;
 }>({
-  currentDirectory: '~',
+  currentDirectory: '/',
   setCurrentDirectory: () => {},
 });
 
@@ -16,7 +16,7 @@ interface DirectoryProviderProps {
 }
 
 export const DirectoryProvider = ({ children }: DirectoryProviderProps) => {
-  const [currentDirectory, setCurrentDirectory] = useState('~');
+  const [currentDirectory, setCurrentDirectory] = useState('/');
 
   return (
     <DirectoryContext.Provider
