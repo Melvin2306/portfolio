@@ -20,7 +20,7 @@ function TerminalOutput({ output }: MessageProps) {
 
   // Find the index of the last occurrence of 'clear' in the output
   const lastClearIndex = output.output.reduce(
-    (acc, line, index) => (line.includes('clear') ? index : acc),
+    (acc, line, index) => (line.includes('clearCommandOutput') ? index : acc),
     -1
   );
 

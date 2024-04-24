@@ -2,6 +2,8 @@ import { cd } from '@/lib/terminal/commands/cd/cd';
 import { commands } from '@/lib/terminal/commands/commands/commands';
 import { ls } from '@/lib/terminal/commands/ls/ls';
 import { clear } from '@/lib/terminal/commands/clear/clear';
+import { whoami } from '@/lib/terminal/commands/whoami/whoami';
+import { pwd } from '@/lib/terminal/commands/pwd/pwd';
 import { CommandMapping } from '@/types/commandMapping';
 
 export const terminalCommands: CommandMapping[] = [
@@ -29,16 +31,16 @@ export const terminalCommands: CommandMapping[] = [
     usage: 'ls',
     function: ls,
   },
-  // {
-  //   command: 'pwd',
-  //   description: 'Print working directory',
-  //   usage: 'pwd',
-  //   function: pwd,
-  // },
-  // {
-  //   command: 'whoami',
-  //   description: 'Print the current user',
-  //   usage: 'whoami',
-  //   function: whoami,
-  // },
+  {
+    command: 'pwd',
+    description: 'Print working directory',
+    usage: 'pwd',
+    function: pwd,
+  },
+  {
+    command: 'whoami',
+    description: 'Print the current user',
+    usage: 'whoami',
+    function: whoami,
+  },
 ];

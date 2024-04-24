@@ -11,10 +11,10 @@ export const directoryStructure = {
     },
     visibility: 'visible',
     contents: {
-      home: homeDir,
-      var: varDir,
-      etc: etcDir,
-      bin: binDir,
+      'home': homeDir,
+      'var': varDir,
+      'etc': etcDir,
+      'bin': binDir,
     },
   },
 };
