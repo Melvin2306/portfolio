@@ -1,6 +1,7 @@
 import { cd } from '@/lib/terminal/commands/cd/cd';
 import { commands } from '@/lib/terminal/commands/commands/commands';
 import { ls } from '@/lib/terminal/commands/ls/ls';
+import { clear } from '@/lib/terminal/commands/clear/clear';
 import { CommandMapping } from '@/types/commandMapping';
 
 export const terminalCommands: CommandMapping[] = [
@@ -10,12 +11,12 @@ export const terminalCommands: CommandMapping[] = [
     usage: 'cd [directory]',
     function: cd,
   },
-  // {
-  //   command: 'clear',
-  //   description: 'Clear the terminal',
-  //   usage: 'clear',
-  //   function: clear,
-  // },
+  {
+    command: 'clear',
+    description: 'Clear the terminal',
+    usage: 'clear',
+    function: clear,
+  },
   {
     command: 'commands',
     description: 'List all available commands',

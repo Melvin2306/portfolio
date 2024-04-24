@@ -18,9 +18,21 @@ function TerminalOutput({ output }: MessageProps) {
     scrollToBottom();
   }, [output]);
 
+  // Find the index of the last occurrence of 'clear' in the output
+  const lastClearIndex = output.output.reduce(
+    (acc, line, index) => (line.includes('clear') ? index : acc),
+    -1
+  );
+
+  // Slice the output array to get only the lines after the last 'clear'
+  const outputAfterClear =
+    lastClearIndex !== -1
+      ? output.output.slice(lastClearIndex + 1)
+      : output.output;
+
   return (
     <div className='mb-10'>
-      {output.output.map((line: string, index: number) => (
+      {outputAfterClear.map((line: string, index: number) => (
         <div key={index}>{line}</div>
       ))}
       <div ref={outputEndRef} />
