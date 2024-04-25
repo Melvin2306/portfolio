@@ -5,7 +5,7 @@ const ColorContext = createContext<{
   currentColor: string;
   setCurrentColor: (Color: string) => void;
 }>({
-  currentColor: 'blue',
+  currentColor: 'red',
   setCurrentColor: () => {},
 });
 
@@ -16,7 +16,7 @@ interface ColorProviderProps {
 }
 
 export const ColorProvider = ({ children }: ColorProviderProps) => {
-  const [currentColor, setCurrentColor] = useState('blue');
+  const [currentColor, setCurrentColor] = useState('red');
 
   return (
     <ColorContext.Provider value={{ currentColor, setCurrentColor }}>
