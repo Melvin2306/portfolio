@@ -14,9 +14,11 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import { useColor } from '@/context/ColorContext';
 
 function Footer() {
   const [windowWidth, setWindowWidth] = useState<number>(0);
+  const { currentColor } = useColor();
 
   useEffect(() => {
     setWindowWidth(window.innerWidth);
@@ -37,7 +39,9 @@ function Footer() {
       <div className='flex flex-row items-center gap-3'>
         <span>
           Made by{' '}
-          <span className='cursor-default hover:animate-pulse hover:text-red-500'>
+          <span
+            className={`cursor-default hover:animate-pulse hover:text-${currentColor}-500`}
+          >
             Melvin Rinkleff
           </span>
         </span>
@@ -175,7 +179,7 @@ function Footer() {
             <TooltipContent className='whitespace-normal break-words'>
               <span>
                 I personally recommend{' '}
-                <span className='text-red-500'>dark mode</span>
+                <span className={`text-${currentColor}-500`}>dark mode</span>
                 <br />
                 Who uses their terminal in light mode anyways?!
               </span>{' '}

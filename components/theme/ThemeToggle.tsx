@@ -11,9 +11,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useColor } from '@/context/ColorContext';
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
+  const { currentColor } = useColor();
 
   return (
     <DropdownMenu>
@@ -31,8 +33,12 @@ export function ThemeToggle() {
             style={{ top: '-0.25rem', right: '-0.25rem' }}
           >
             <span className='relative flex h-3 w-3'>
-              <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500 opacity-75'></span>
-              <span className='relative inline-flex h-3 w-3 rounded-full bg-red-500'></span>
+              <span
+                className={`absolute inline-flex h-full w-full animate-ping rounded-full bg-${currentColor}-500 opacity-75`}
+              ></span>
+              <span
+                className={`relative inline-flex h-3 w-3 rounded-full bg-${currentColor}-500`}
+              ></span>
             </span>
           </div>
         )}

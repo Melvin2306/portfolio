@@ -12,7 +12,6 @@ import { ColorProvider } from '@/context/ColorContext';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Welcome to MelvinOS',
   description: 'Portfolio page of Melvin Rinkleff',
 };
 
