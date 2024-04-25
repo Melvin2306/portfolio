@@ -280,7 +280,6 @@ export const manual = {
     'Options',
     `Available colors: ${themeColors.join(', ')}.`,
     'If no color is specified, the command will revert the terminal to the default theme.',
-
     '',
     'Examples',
     'To change the terminal theme to blue:',

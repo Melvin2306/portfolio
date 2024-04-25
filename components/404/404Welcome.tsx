@@ -1,9 +1,9 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { UAParser } from 'ua-parser-js';
-import { ASCIIArtBig } from '@/lib/ascii/ascii-big';
-import { ASCIIArtSmall } from '@/lib/ascii/ascii-small';
-import { ASCIIArtMedium } from '@/lib/ascii/ascii-medium';
+import { asciiNotFoundBig } from '@/lib/ascii/ascii-404-big';
+import { asciiNotFoundMedium } from '@/lib/ascii/ascii-404-medium';
+import { asciiNotFoundSmall } from '@/lib/ascii/ascii-404-small';
 import { useUser } from '@/context/UserContext';
 import { useMotionValue } from 'framer-motion';
 import { useMotionTemplate, motion } from 'framer-motion';
@@ -43,7 +43,7 @@ function CardPattern({ mouseX, mouseY, randomString }: any) {
   );
 }
 
-function TerminalWelcome() {
+function NotFoundWelcome() {
   let mouseX = useMotionValue(0);
   let mouseY = useMotionValue(0);
 
@@ -103,7 +103,6 @@ function TerminalWelcome() {
     }
     return () => {
       window.removeEventListener('resize', handleResize);
-      // Clear any intervals or timeouts if any
     };
   }, []);
 
@@ -133,14 +132,14 @@ function TerminalWelcome() {
 
   const getASCIIArt = () => {
     // Only determine ASCII art size if windowWidth is defined
-    if (typeof windowWidth === 'undefined') return ASCIIArtBig; // Default or placeholder
+    if (typeof windowWidth === 'undefined') return asciiNotFoundBig; // Default or placeholder
 
     if (windowWidth < 630) {
-      return ASCIIArtSmall;
-    } else if (windowWidth < 750) {
-      return ASCIIArtMedium;
+      return asciiNotFoundSmall;
+    } else if (windowWidth < 800) {
+      return asciiNotFoundMedium;
     } else {
-      return ASCIIArtBig;
+      return asciiNotFoundBig;
     }
   };
 
@@ -159,7 +158,9 @@ function TerminalWelcome() {
   ];
 
   return (
-    <div className={cn('relative h-full w-full rounded-full bg-transparent')}>
+    <div
+      className={cn('relative h-full w-full rounded-full bg-transparent pb-3')}
+    >
       <div
         onMouseMove={onMouseMove}
         className='group/card relative flex h-full w-full overflow-hidden rounded-3xl bg-transparent'
@@ -176,9 +177,9 @@ function TerminalWelcome() {
                 <pre className='cursor-default'>{getASCIIArt()}</pre>
               </div>
               <div
-                className={`col-span-2 cursor-default ${typeof windowWidth !== 'undefined' && windowWidth < 1030 ? 'hidden' : ''}`}
+                className={`col-span-2 cursor-default ${typeof windowWidth !== 'undefined' && windowWidth < 1177 ? 'hidden' : ''}`}
               >
-                <ul>
+                <ul className='mt-3'>
                   {welcomeInfo.map((info) => (
                     <li key={info.key}>
                       <span className={`text-${currentColor}-500 font-bold`}>
@@ -197,4 +198,4 @@ function TerminalWelcome() {
   );
 }
 
-export default TerminalWelcome;
+export default NotFoundWelcome;

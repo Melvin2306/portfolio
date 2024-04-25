@@ -9,6 +9,6 @@ export function theme(input: CommandInput): Array<string> {
   if (themeColors.includes(newTheme)) {
     return [`${newTheme}`];
   } else {
-    return [`Invalid theme color - use 'theme help' to see available colors`];
+    return [`Invalid theme color - use 'man theme' to see available colors`];
   }
 }

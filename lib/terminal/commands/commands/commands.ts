@@ -8,6 +8,7 @@ export function commands(input: CommandInput): Array<string> {
     'clear    - clear the terminal screen. Usage: clear',
     'commands - list all available commands. Usage: commands',
     'ls       - list directory contents. Usage: ls',
+    'man     - manual page for a command. Usage: man [command]',
     'pwd      - print working directory. Usage: pwd',
     'theme   - change the terminal theme. Usage: theme [color]',
     'whoami   - print the current user. Usage: whoami',
