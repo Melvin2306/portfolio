@@ -9,6 +9,7 @@ export function commands(input: CommandInput): Array<string> {
     'commands - list all available commands. Usage: commands',
     'ls       - list directory contents. Usage: ls',
     'pwd      - print working directory. Usage: pwd',
+    'theme   - change the terminal theme. Usage: theme [color]',
     'whoami   - print the current user. Usage: whoami',
   ];
   const output = commands;

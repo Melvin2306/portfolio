@@ -1,5 +1,6 @@
 export type TerminalInput = {
   user: string;
+  theme: string;
   directory: string;
   command: string;
 };
@@ -12,6 +13,7 @@ export type CommandSplit = {
 
 export type CommandInput = {
   directory: string;
+  theme: string;
   user: string;
   item?: string;
   flags?: Array<string>;

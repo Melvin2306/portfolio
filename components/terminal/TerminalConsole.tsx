@@ -11,6 +11,7 @@ import { TerminalOutput as TerminalOutputType } from '@/types/output';
 import { TerminalInput } from '@/types/input';
 import { useDirectory } from '@/context/DirectoryContext';
 import { useUser } from '@/context/UserContext';
+import { useColor } from '@/context/ColorContext';
 interface TerminalConsoleProps {
   onCommandExecute: (newOutput: TerminalOutputType, command: string) => void;
 }
@@ -19,6 +20,7 @@ function TerminalConsole({ onCommandExecute }: TerminalConsoleProps) {
   const [commandHistory, setCommandHistory] = React.useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = React.useState<number>(-1);
   const { currentUser } = useUser();
+  const { setCurrentColor, currentColor } = useColor();
   const { setCurrentDirectory, currentDirectory } = useDirectory();
 
   const formSchema = z.object({
@@ -44,6 +46,7 @@ function TerminalConsole({ onCommandExecute }: TerminalConsoleProps) {
     const input: TerminalInput = {
       user: currentUser,
       directory: currentDirectory,
+      theme: currentColor,
       command: values.command,
     };
     try {
@@ -51,11 +54,15 @@ function TerminalConsole({ onCommandExecute }: TerminalConsoleProps) {
       if (result.directory !== currentDirectory) {
         setCurrentDirectory(result.directory);
       }
+      if (result.theme !== currentColor) {
+        setCurrentColor(result.theme);
+      }
       onCommandExecute(result, input.command);
     } catch (error) {
       if (error instanceof Error) {
         const errorOutput: TerminalOutputType = {
           user: currentUser,
+          theme: currentColor,
           directory: currentDirectory,
           output: [`Error: ${error.message}`],
         };
@@ -63,6 +70,7 @@ function TerminalConsole({ onCommandExecute }: TerminalConsoleProps) {
       } else {
         const errorOutput: TerminalOutputType = {
           user: currentUser,
+          theme: currentColor,
           directory: currentDirectory,
           output: ['An error occurred'],
         };

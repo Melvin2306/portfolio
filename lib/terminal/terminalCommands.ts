@@ -4,7 +4,9 @@ import { ls } from '@/lib/terminal/commands/ls/ls';
 import { clear } from '@/lib/terminal/commands/clear/clear';
 import { whoami } from '@/lib/terminal/commands/whoami/whoami';
 import { pwd } from '@/lib/terminal/commands/pwd/pwd';
+import { theme } from '@/lib/terminal/commands/theme/theme';
 import { CommandMapping } from '@/types/commandMapping';
+import { man } from './commands/man/man';
 
 export const terminalCommands: CommandMapping[] = [
   {
@@ -32,10 +34,22 @@ export const terminalCommands: CommandMapping[] = [
     function: ls,
   },
   {
+    command: 'man',
+    description: 'Manual',
+    usage: 'man [command]',
+    function: man,
+  },
+  {
     command: 'pwd',
     description: 'Print working directory',
     usage: 'pwd',
     function: pwd,
+  },
+  {
+    command: 'theme',
+    description: 'Change the terminal theme',
+    usage: 'theme [color]',
+    function: theme,
   },
   {
     command: 'whoami',

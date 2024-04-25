@@ -6,6 +6,7 @@ import { splitCommand } from './splitcommand';
 export function executeCommand(input: TerminalInput): TerminalOutputType {
   let terminalOutput: TerminalOutputType = {
     user: input.user,
+    theme: input.theme,
     directory: input.directory,
     output: [],
   };
@@ -15,6 +16,7 @@ export function executeCommand(input: TerminalInput): TerminalOutputType {
   const commandInput: CommandInput = {
     directory: input.directory,
     user: input.user,
+    theme: input.theme,
     item: splitInput.item,
     flags: splitInput.flags,
   };
@@ -36,6 +38,21 @@ export function executeCommand(input: TerminalInput): TerminalOutputType {
       const directory = selectedCommand.function(commandInput);
       terminalOutput.user = user;
       terminalOutput.directory = directory[0];
+      return terminalOutput;
+    }
+    if (selectedCommand.command === 'theme') {
+      if (
+        selectedCommand.function(commandInput)[0] ===
+        "Invalid theme color - use 'theme help' to see available colors"
+      ) {
+        const error = selectedCommand.function(commandInput)[0];
+        terminalOutput.user = user;
+        terminalOutput.output.push(error);
+        return terminalOutput;
+      }
+      const theme = selectedCommand.function(commandInput);
+      terminalOutput.user = user;
+      terminalOutput.theme = theme[0];
       return terminalOutput;
     }
     const output = selectedCommand.function(commandInput);

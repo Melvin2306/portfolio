@@ -2,9 +2,11 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useAnimate } from 'framer-motion';
+import { useColor } from '@/context/ColorContext';
 
 export const TextGenerateEffect = ({ words }: { words: string }) => {
   const [scope, animate] = useAnimate();
+  const { currentColor } = useColor();
   let wordsArray = words.split(' ');
 
   useEffect(() => {
@@ -28,11 +30,11 @@ export const TextGenerateEffect = ({ words }: { words: string }) => {
         {wordsArray.map((word, idx) => {
           let style = {};
           if (word === 'Melvin' || word === 'Rinkleff.') {
-            style = 'font-bold text-red-500';
+            style = `font-bold text-${currentColor}-500`;
           } else if (word === "'commands'") {
             style = 'font-bold';
           } else if (word === '♡') {
-            style = 'font-bold text-red-500';
+            style = `font-bold text-${currentColor}-500`;
           } else if (word === '<specific' || word === "command>'") {
             style = 'italic';
           }

@@ -8,6 +8,7 @@ import { useUser } from '@/context/UserContext';
 import { useMotionValue } from 'framer-motion';
 import { useMotionTemplate, motion } from 'framer-motion';
 import { cn } from '@/utils/cn';
+import { useColor } from '@/context/ColorContext';
 
 const characters =
   'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -60,6 +61,7 @@ function TerminalWelcome() {
   const [uptime, setUptime] = useState('0m');
   const [windowWidth, setWindowWidth] = useState<number>(0);
   const [keyColorClass, setKeyColorClass] = useState('text-red-500');
+  const { currentColor } = useColor();
 
   useEffect(() => {
     setWindowWidth(window.innerWidth);
@@ -179,7 +181,7 @@ function TerminalWelcome() {
                 <ul>
                   {welcomeInfo.map((info) => (
                     <li key={info.key}>
-                      <span className={`${keyColorClass} font-bold`}>
+                      <span className={`text-${currentColor}-500 font-bold`}>
                         {info.key}:
                       </span>{' '}
                       {info.value}
