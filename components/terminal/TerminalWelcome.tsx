@@ -178,7 +178,7 @@ function TerminalWelcome() {
               <div
                 className={`col-span-2 cursor-default ${typeof windowWidth !== 'undefined' && windowWidth < 1030 ? 'hidden' : ''}`}
               >
-                <ul>
+                <ul className='mt-4'>
                   {welcomeInfo.map((info) => (
                     <li key={info.key}>
                       <span className={`text-${currentColor}-500 font-bold`}>
