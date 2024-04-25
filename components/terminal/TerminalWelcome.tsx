@@ -103,7 +103,6 @@ function TerminalWelcome() {
     }
     return () => {
       window.removeEventListener('resize', handleResize);
-      // Clear any intervals or timeouts if any
     };
   }, []);
 
@@ -132,8 +131,7 @@ function TerminalWelcome() {
   };
 
   const getASCIIArt = () => {
-    // Only determine ASCII art size if windowWidth is defined
-    if (typeof windowWidth === 'undefined') return ASCIIArtBig; // Default or placeholder
+    if (typeof windowWidth === 'undefined') return ASCIIArtBig;
 
     if (windowWidth < 630) {
       return ASCIIArtSmall;
