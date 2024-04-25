@@ -10,14 +10,5 @@ export function man(input: CommandInput): Array<string> {
     return ['No manual entry for this command'];
   }
   const manual = command.manual;
-  const usage = command.usage;
-  const description = command.description;
-  return [
-    `DESCRIPTION:`,
-    `${description}`,
-    `USAGE:`,
-    `${usage}`,
-    `MANUAL:`,
-    ...manual,
-  ];
+  return [`MANUAL:`, ...manual];
 }

@@ -8,62 +8,88 @@ import { theme } from '@/lib/terminal/commands/theme/theme';
 import { CommandMapping } from '@/types/commandMapping';
 import { man } from './commands/man/man';
 import { manual } from '@/lib/terminal/manual';
+import { echo } from './commands/echo/echo';
+import { uname } from './commands/uname/uname';
+import { ps } from './commands/ps/ps';
+import { ifconfig } from './commands/ifconfig/ifconfig';
+import { df } from './commands/df/df';
+import { apt } from './commands/apt/apt';
+import { traceroute } from './commands/traceroute/traceroute';
 
 export const terminalCommands: CommandMapping[] = [
   {
+    command: 'apt',
+    manual: manual.apt,
+    function: apt,
+  },
+  {
     command: 'cd',
-    description: 'Change directory',
     manual: manual.cd,
-    usage: 'cd [directory]',
     function: cd,
   },
   {
     command: 'clear',
-    description: 'Clear the terminal',
     manual: manual.clear,
-    usage: 'clear',
     function: clear,
   },
   {
     command: 'commands',
-    description: 'List all available commands',
     manual: manual.commands,
-    usage: 'commands',
     function: commands,
   },
   {
+    command: 'df',
+    manual: manual.df,
+    function: df,
+  },
+  {
+    command: 'echo',
+    manual: manual.echo,
+    function: echo,
+  },
+  {
     command: 'ls',
-    description: 'List directory contents',
     manual: manual.ls,
-    usage: 'ls',
     function: ls,
   },
   {
+    command: 'ifconfig',
+    manual: manual.ifconfig,
+    function: ifconfig,
+  },
+  {
     command: 'man',
-    description: 'Manual',
     manual: manual.man,
-    usage: 'man [command]',
     function: man,
   },
   {
     command: 'pwd',
-    description: 'Print working directory',
     manual: manual.pwd,
-    usage: 'pwd',
     function: pwd,
   },
   {
+    command: 'ps',
+    manual: manual.ps,
+    function: ps,
+  },
+  {
+    command: 'uname',
+    manual: manual.uname,
+    function: uname,
+  },
+  {
+    command: 'traceroute',
+    manual: manual.traceroute,
+    function: traceroute,
+  },
+  {
     command: 'theme',
-    description: 'Change the terminal theme',
     manual: manual.theme,
-    usage: 'theme [color]',
     function: theme,
   },
   {
     command: 'whoami',
-    description: 'Print the current user',
     manual: manual.whoami,
-    usage: 'whoami',
     function: whoami,
   },
 ];
