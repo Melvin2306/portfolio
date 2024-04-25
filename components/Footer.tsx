@@ -146,7 +146,7 @@ function Footer() {
             <TooltipTrigger>
               <a
                 className='cursor-default hover:text-lime-500'
-                href='mailto:melvin.rinkleff@gmx.de'
+                href='mailto:melvin@rinkleff.dev'
                 target='_blank'
                 rel='noopener noreferrer'
               >
