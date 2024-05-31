@@ -27,11 +27,13 @@ export async function GET(request: NextRequest) {
       request.headers.get('x-forwarded-for') ||
       request.ip;
     console.log(ipAddress);
-    if (!request.geo) {
+    if (request.geo?.country === undefined) {
       console.log('No geo data found');
-      const ipLocationResponse = fetch(
+      const response = fetch(
         `https://api.iplocation.net/?ip=${ipAddress}`
       );
+      const data: IpLocationResponse = await (await response).json();
+        console.log(data);
       //TODO
     } else {
       console.log('Geo data found');
