@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
+
 type Visitor = {
   ip: string | undefined;
   country: string | undefined;
@@ -32,6 +36,21 @@ export async function GET(request: NextRequest) {
       try {
         const response = fetch(`https://api.iplocation.net/?ip=${ipAddress}`);
         const data: IpLocationResponse = await (await response).json();
+        const createRecod = await prisma.history.create({
+          data: {
+            ip_address: data.ip,
+            ip_version: data.ip_version,
+            country_name: data.country_name,
+            country_code: data.country_code2,
+            isp: data.isp,
+            city: '',
+            region: '',
+            latitude: 0.1,
+            longitude: 0.1,
+            source: 'iplocation.net',
+          },
+        });
+
         return NextResponse.json(data);
       } catch (error) {
         return NextResponse.error();
@@ -46,6 +65,23 @@ export async function GET(request: NextRequest) {
         latitude: request.geo?.latitude,
         longitude: request.geo?.longitude,
       };
+      if (visitor.ip === undefined) {
+        return NextResponse.error();
+      }
+      const createRecod = await prisma.history.create({
+        data: {
+          ip_address: visitor.ip,
+          ip_version: 'IPv4',
+          country_name: '',
+          country_code: '',
+          isp: '',
+          city: 'visitor.city',
+          region: '',
+          latitude: 0.1,
+          longitude: 0.1,
+          source: 'next.js',
+        },
+      });
       console.log(visitor);
       return NextResponse.json(visitor);
     }
