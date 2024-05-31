@@ -29,12 +29,13 @@ export async function GET(request: NextRequest) {
     console.log(ipAddress);
     if (request.geo?.country === undefined) {
       console.log('No geo data found');
-      const response = fetch(
-        `https://api.iplocation.net/?ip=${ipAddress}`
-      );
-      const data: IpLocationResponse = await (await response).json();
-        console.log(data);
-      //TODO
+      try {
+        const response = fetch(`https://api.iplocation.net/?ip=${ipAddress}`);
+        const data: IpLocationResponse = await (await response).json();
+        return NextResponse.json(data);
+      } catch (error) {
+        return NextResponse.error();
+      }
     } else {
       console.log('Geo data found');
       const visitor: Visitor = {
