@@ -27,7 +27,7 @@ function TerminalWindow() {
     command: string
   ) => {
     const prompt = `${currentUser}@${currentHost}: ${currentDirectory} ${command}`;
-    setLastCommand(command); // Update the last command
+    setLastCommand(command);
     setTerminalOutput((prevOutput) => ({
       ...prevOutput,
       output: [...prevOutput.output, prompt, ...newOutput.output],
