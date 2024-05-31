@@ -7,11 +7,18 @@ export default function Home() {
   const activeTitle = 'MelvinOS - Melvin Rinkleff';
   const inactiveTitle = 'Shutting down...';
 
+  async function getInfo() {
+    const ipInfo = fetch('/api/visitor');
+    const response = (await ipInfo).body;
+    console.log(response);
+  }
+
   useEffect(() => {
     const handleBlur = () => {
       document.title = inactiveTitle;
     };
 
+    getInfo();
     const handleFocus = () => {
       document.title = activeTitle;
     };
