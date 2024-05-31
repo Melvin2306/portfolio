@@ -18,7 +18,7 @@ export default function Home() {
       document.title = inactiveTitle;
     };
 
-    getInfo();
+    // getInfo();
     const handleFocus = () => {
       document.title = activeTitle;
     };
