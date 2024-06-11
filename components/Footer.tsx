@@ -15,6 +15,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { useColor } from '@/context/ColorContext';
+import Link from 'next/link';
 
 function Footer() {
   const [windowWidth, setWindowWidth] = useState<number>(0);
@@ -35,9 +36,11 @@ function Footer() {
   }, []);
 
   return (
-    <div className='flex h-fit items-center justify-between'>
+    <footer className='flex-col-3 flex h-fit items-center justify-between'>
       <div className='flex flex-row items-center gap-3'>
-        <span>
+        <span
+          className={`${typeof windowWidth !== 'undefined' && windowWidth < 750 ? 'hidden' : ''}`}
+        >
           Made by{' '}
           <span
             className={`cursor-default hover:animate-pulse hover:text-${currentColor}-500`}
@@ -67,7 +70,6 @@ function Footer() {
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
-
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger>
@@ -166,12 +168,21 @@ function Footer() {
         </TooltipProvider>
       </div>
 
+      <div
+        className={`${typeof windowWidth !== 'undefined' && windowWidth < 750 ? '' : 'mr-28'}`}
+      >
+        <Link className='cursor-default hover:opacity-75' href='/imprint'>
+          {' '}
+          Imprint
+        </Link>
+      </div>
+
       <div className='flex flex-row items-center gap-2 '>
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger>
               <p
-                className={`cursor-default ${typeof windowWidth !== 'undefined' && windowWidth < 550 ? 'hidden' : ''}`}
+                className={`cursor-default ${typeof windowWidth !== 'undefined' && windowWidth < 450 ? 'hidden' : ''}`}
               >
                 Change dark/light mode
               </p>
@@ -188,7 +199,7 @@ function Footer() {
         </TooltipProvider>
         <ThemeToggle />
       </div>
-    </div>
+    </footer>
   );
 }
 

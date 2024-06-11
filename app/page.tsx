@@ -28,7 +28,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className='flex h-screen flex-col gap-2 p-2.5'>
+    <main className='flex h-screen flex-col gap-2 px-2.5 pb-1.5 pt-2.5'>
       <TerminalWindow />
       <Footer />
     </main>

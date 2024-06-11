@@ -27,7 +27,7 @@ export default function NotFound() {
     };
   }, []);
   return (
-    <main className='flex h-screen flex-col gap-2 p-4'>
+    <main className='flex h-screen flex-col gap-2 px-2.5 pb-1.5 pt-2.5'>
       <TerminalWindow404 />
       <Footer />
     </main>
