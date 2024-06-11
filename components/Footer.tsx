@@ -35,7 +35,7 @@ function Footer() {
   }, []);
 
   return (
-    <div className='h-2/10 flex items-center justify-between'>
+    <div className='flex h-fit items-center justify-between'>
       <div className='flex flex-row items-center gap-3'>
         <span>
           Made by{' '}

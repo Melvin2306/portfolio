@@ -32,7 +32,7 @@ export function ThemeToggle() {
             className='absolute'
             style={{ top: '-0.25rem', right: '-0.25rem' }}
           >
-            <span className='relative flex h-3 w-3'>
+            <span className='relative flex h-2 w-2'>
               <span
                 className={`absolute inline-flex h-full w-full animate-ping rounded-full bg-${currentColor}-500 opacity-75`}
               ></span>

@@ -1,5 +1,6 @@
 'use client';
 import Footer from '@/components/Footer';
+import ImprintWindow from '@/components/imprint/ImprintWindow';
 import TerminalWindow from '@/components/terminal/TerminalWindow';
 import { useEffect } from 'react';
 
@@ -29,7 +30,7 @@ export default function Home() {
 
   return (
     <main className='flex h-screen flex-col gap-2 p-2.5'>
-      <TerminalWindow />
+      <ImprintWindow />
       <Footer />
     </main>
   );
